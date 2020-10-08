@@ -17,9 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
+from records import views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/'), include('api.urls')
+    path('', views.apiOverviewView.as_view()),
+    path('artists/', views.ArtistsListView.as_view())
+
 ]
