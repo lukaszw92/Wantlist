@@ -23,6 +23,6 @@ from records import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.apiOverviewView.as_view()),
-    path('artists/', views.ArtistsListView.as_view())
-
+    path('artists/', views.ArtistsListView.as_view()),
+    path('artist_create/', views.ArtistCreateView.as_view())
 ]

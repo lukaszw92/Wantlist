@@ -8,6 +8,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import ArtistSerializer
 
+
 # @api_view(['GET'])
 # def apiOverview(request):
 #     a = {
@@ -25,6 +26,7 @@ class apiOverviewView(APIView):
         }
         return Response(urls)
 
+
 class ArtistsListView(APIView):
 
     def get(self, request):
@@ -33,4 +35,12 @@ class ArtistsListView(APIView):
         return Response(serializer.data)
 
 
+class ArtistCreateView(APIView):
 
+    def post(self, request):
+        serializer = ArtistSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+
+        return Response(serializer.data)
