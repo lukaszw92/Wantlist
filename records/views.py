@@ -9,15 +9,6 @@ from rest_framework.response import Response
 from .serializers import ArtistSerializer
 
 
-# @api_view(['GET'])
-# def apiOverview(request):
-#     a = {
-#             "dupa": "dzieńdobry",
-#           "jajko": "dobrywieczór",
-#     }
-#
-#     return Response(a)
-
 class apiOverviewView(APIView):
 
     def get(self, request):
