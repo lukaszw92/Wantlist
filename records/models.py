@@ -8,8 +8,7 @@ class Artist(models.Model):
     def __str__(self):
         if self.surname is None:
             return f'{self.name}'
-        else:
-            return f'{self.name} {self.surname}'
+        return f'{self.name} {self.surname}'
 
 
 class Genre(models.Model):
@@ -30,10 +29,10 @@ class SubGenre(models.Model):
 class Release(models.Model):
     title = models.CharField(max_length=100)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
-    first_released = models.DateTimeField
+    first_released = models.DateField()
     genre = models.ManyToManyField(Genre)
-    wanted = models.IntegerField(choices=list(zip(range(1, 5), range(1, 5))))
+    wanted = models.IntegerField(choices=list(zip(range(1, 6), range(1, 6))))
     in_collection = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.title
+        return f'{self.artist} - {self.title}'

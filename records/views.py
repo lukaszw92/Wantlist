@@ -26,6 +26,14 @@ class ArtistsListView(APIView):
         return Response(serializer.data)
 
 
+class ArtistDetailView(APIView):
+
+    def get(self, request, pk):
+        artist = Artist.objects.get(pk=pk)
+        serializer = ArtistSerializer(artist, many=False)
+        return Response(serializer.data)
+
+
 class ArtistCreateView(APIView):
 
     def post(self, request):
@@ -35,3 +43,24 @@ class ArtistCreateView(APIView):
             serializer.save()
 
         return Response(serializer.data)
+
+
+class ArtistUpdateView(APIView):
+
+    def put(self, request, pk):
+        artist = Artist.objects.get(pk=pk)
+        serializer = ArtistSerializer(instance=artist, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+
+        return Response(serializer.data)
+
+
+class ArtistDeleteView(APIView):
+
+    def delete(self, request, pk):
+        artist = Artist.objects.get(pk=pk)
+        artist.delete()
+
+        return Response("Item deleted.")
