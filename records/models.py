@@ -1,11 +1,16 @@
 from django.db import models
 
+
 class Artist(models.Model):
     name = models.CharField(max_length=100)
     surname = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
-        return f'{self.name} {self.surname}'
+        if self.surname is None:
+            return f'{self.name}'
+        else:
+            return f'{self.name} {self.surname}'
+
 
 class Genre(models.Model):
     name = models.CharField(max_length=100)
@@ -21,6 +26,7 @@ class SubGenre(models.Model):
     def __str__(self):
         return self.name
 
+
 class Release(models.Model):
     title = models.CharField(max_length=100)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
@@ -31,5 +37,3 @@ class Release(models.Model):
 
     def __str__(self):
         return self.title
-
-
