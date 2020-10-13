@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", ()=> {
 
-    console.log("dupa")
-
     const url = "http://127.0.0.1:8000/wantilst/artists/"
     let artistList = document.getElementById("artists")
 
