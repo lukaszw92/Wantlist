@@ -6,7 +6,9 @@ from rest_framework.views import APIView
 from .models import Artist, Release, Genre, SubGenre
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import ArtistSerializer
+from .serializers import ArtistSerializer, GenreSerializer
+
+from rest_framework import generics
 
 
 class apiOverviewView(APIView):
@@ -64,3 +66,9 @@ class ArtistDeleteView(APIView):
         artist.delete()
 
         return Response("Item deleted.")
+
+
+class GenreListView(generics.ListAPIView):
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer
+
