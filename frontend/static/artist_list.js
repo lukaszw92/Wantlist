@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", ()=> {
 
-    const url = "http://127.0.0.1:8000/wantilst/artists/"
+    const url = "http://127.0.0.1:8000/api/artist_list/"
     let artistList = document.getElementById("artists")
 
         fetch(url).then(data=>data.json()).then(obj=>{

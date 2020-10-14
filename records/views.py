@@ -72,3 +72,27 @@ class GenreListView(generics.ListAPIView):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
 
+
+class GenreDetailView(generics.RetrieveAPIView):
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer
+
+
+class GenreCreateView(generics.CreateAPIView):
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer
+
+
+class GenreUpdateView(generics.UpdateAPIView):
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer
+
+
+class GenreDeleteView(generics.DestroyAPIView):
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer
+
+# class GenreAllView(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Genre.objects.all()
+#     serializer_class = GenreSerializer
+
