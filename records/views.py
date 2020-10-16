@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from .models import Artist, Release, Genre, SubGenre
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import ArtistSerializer, GenreSerializer
+from .serializers import ArtistSerializer, GenreSerializer, ReleaseSerializer
 
 from rest_framework import generics
 
@@ -15,7 +15,23 @@ class apiOverviewView(APIView):
 
     def get(self, request):
         urls = {
-            "Artist List": "/artists/",
+            "Artist list": "/artist_list/",
+            "Artist detail view": "/artist_detail/<str:pk>/",
+            "Artist create view": "/artist_create/",
+            "Artist update view": "/artist_update/<str:pk>/",
+            "Artist delete view": "/artist_delete/<str:pk>/",
+
+                   "Genre list": "/genre_list/",
+                   "Genre detail view": "/genre_detail/<str:pk>/",
+                   "Genre create view": "/genre_create/",
+                   "Genre update view": "/genre_update/<str:pk>/",
+                   "Genre delete view": "/genre_delete/<str:pk>/",
+
+                   "Release list": "/release_list/",
+                   "Release create view": "/release_create/",
+                   "Release detail,update,delete ": "/release/<str:pk>/",
+
+
         }
         return Response(urls)
 
@@ -92,7 +108,17 @@ class GenreDeleteView(generics.DestroyAPIView):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
 
-# class GenreAllView(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = Genre.objects.all()
-#     serializer_class = GenreSerializer
 
+class ReleaseListView(generics.ListAPIView):
+    queryset = Release.objects.all()
+    serializer_class = ReleaseSerializer
+
+
+class ReleaseCreateView(generics.CreateAPIView):
+    queryset = Release.objects.all()
+    serializer_class = ReleaseSerializer
+
+
+class ReleaseEditView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Release.objects.all()
+    serializer_class = ReleaseSerializer

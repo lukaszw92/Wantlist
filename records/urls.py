@@ -17,4 +17,8 @@ urlpatterns = [
     path('genre_update/<str:pk>/', views.GenreUpdateView.as_view(), name='genre_update'),
     path('genre_delete/<str:pk>/', views.GenreDeleteView.as_view(), name='genre_delete'),
 
+    path('release_list/', views.ReleaseListView.as_view(), name='release_list'),
+    path('release_create/', views.ReleaseCreateView.as_view(), name='release_create'),
+    path('release/<str:pk>', views.ReleaseEditView.as_view(), name='release_edit'),
+
 ]
