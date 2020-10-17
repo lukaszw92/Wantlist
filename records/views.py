@@ -21,16 +21,15 @@ class apiOverviewView(APIView):
             "Artist update view": "/artist_update/<str:pk>/",
             "Artist delete view": "/artist_delete/<str:pk>/",
 
-                   "Genre list": "/genre_list/",
-                   "Genre detail view": "/genre_detail/<str:pk>/",
-                   "Genre create view": "/genre_create/",
-                   "Genre update view": "/genre_update/<str:pk>/",
-                   "Genre delete view": "/genre_delete/<str:pk>/",
+            "Genre list": "/genre_list/",
+            "Genre detail view": "/genre_detail/<str:pk>/",
+            "Genre create view": "/genre_create/",
+            "Genre update view": "/genre_update/<str:pk>/",
+            "Genre delete view": "/genre_delete/<str:pk>/",
 
-                   "Release list": "/release_list/",
-                   "Release create view": "/release_create/",
-                   "Release detail,update,delete ": "/release/<str:pk>/",
-
+            "Release list": "/release_list/",
+            "Release create view": "/release_create/",
+            "Release detail,update,delete ": "/release/<str:pk>/",
 
         }
         return Response(urls)
@@ -58,7 +57,18 @@ class ArtistCreateView(APIView):
         serializer = ArtistSerializer(data=request.data)
 
         if serializer.is_valid():
-            serializer.save()
+
+            if serializer.validated_data['surname'] == "":
+                serializer.validated_data['surname'] = None
+
+            try:
+                Artist.objects.get(name=serializer.validated_data['name'],
+                                   surname=serializer.validated_data['surname'])
+            except Artist.DoesNotExist:
+                serializer.save()
+
+            else:
+                raise Exception("Artist already exist")
 
         return Response(serializer.data)
 
