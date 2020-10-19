@@ -1,0 +1,14 @@
+
+
+{% extends 'frontend/index.html' %}
+{% block content %}
+    {% load static %}
+
+    <script src="{% static 'artist_list.js' %}"></script>
+
+<h1>Wanted records</h1>
+<ul id="releases"></ul>
+
+{% endblock content %}
+
+

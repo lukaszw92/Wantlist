@@ -5,7 +5,12 @@
     <title>Title</title>
 </head>
 <body>
-Hello and welcome
+
+Wantlist management
+<a href="{% url 'artist_list' %}">Artists</a>
+<a href="{% url 'artist_create' %}">Create Artist</a>
+<a href="{% url 'release_list' %}">Releases</a>
+<a href="{% url 'release_create' %}">Releases Create</a>
 
 {% block content %}
 
